@@ -59,11 +59,10 @@ class Perceptron:
         :return: Updated weights.
         """
         if label != assigned:
-            actual = label  # .strip('.')
-            # assigned = assigned.strip('.')
-            # TODO Fix the classes
-            self.weights[Classification[actual]] = np.add(self.weights[Classification[actual]], instance)
-            self.weights[Classification[assigned]] = np.subtract(self.weights[Classification[assigned]], instance)
+            actual = label
+
+            self.weights[self.classes.index(actual)] = np.add(self.weights[self.classes.index(actual)], instance)
+            self.weights[self.classes.index(assigned)] = np.subtract(self.weights[self.classes.index(assigned)], instance)
 
     def __sum_weights(self, prev_weights, new_weights):
         """
