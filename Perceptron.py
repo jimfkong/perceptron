@@ -15,8 +15,8 @@ class Perceptron:
 
         prev_weights = copy.deepcopy(self.weights)
 
-        features = data[0]
-        labels = data[1]
+        features = data.features
+        labels = data.assigned
         counter = 0
 
         for i in range(0, n_iterations):
@@ -31,6 +31,19 @@ class Perceptron:
             print('Iteration complete...')
 
         self.weights = self.__divide_weights(prev_weights, counter)
+
+    def test(self, testing, data):
+        n_correct = 0
+
+        features = data.features
+        labels = data.assigned
+        
+        for row in testing:
+            assigned = self.classify_instance(features[row])
+            if labels[row] == assigned:
+                n_correct += 1
+
+        return n_correct / len(testing)
 
     def classify_instance(self, instance):
         """

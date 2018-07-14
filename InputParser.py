@@ -4,6 +4,8 @@ import pandas as pd
 Data = namedtuple("Data", ['features', 'assigned', 'feature_names'])
 
 
+# TODO Need to convert data to be binary rather than categorical
+
 def drop_column(data_frame, col_idx):
     return data_frame.drop(col_idx, axis=1)
 
