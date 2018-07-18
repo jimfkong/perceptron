@@ -2,15 +2,9 @@ import sys
 
 import InputParser
 from KFolds import kfolds
+from OneHot import one_hot
 from Perceptron import Perceptron
-
-
-def get_n_columns(ndarray):
-    return ndarray.shape[1]
-
-
-def get_n_rows(ndarray):
-    return ndarray.shape[0]
+from Utilities import get_n_columns, get_n_rows
 
 
 def cross_validate(data, n_folds, n_iterations):
@@ -39,6 +33,8 @@ if __name__ == '__main__':
     n_iterations = 10
 
     data = InputParser.load_csv_data(features_path)
+
+    one_hot(data.features, data.feature_names)
 
     cross_validate(data, n_folds, n_iterations)
 
