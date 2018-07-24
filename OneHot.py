@@ -26,7 +26,7 @@ def one_hot(features, feature_names):
 
             for value in unique_column_values:
                 one_hot_feature = np.zeros((get_n_rows(features), 1), int)
-                one_hot_feature_names.append(feature_names[column] + "_is_" + value)
+                one_hot_feature_names.append(feature_names[column] + "_" + str(value))
 
                 for row in range(0, get_n_rows(features)):
                     one_hot_feature[row] = features[row, column] == value
@@ -34,7 +34,7 @@ def one_hot(features, feature_names):
                 np.vstack(one_hot_feature)
                 one_hot_features = np.hstack((one_hot_features, one_hot_feature))
 
-    return None
+    return one_hot_features, one_hot_feature_names
 
 
 def get_unique_values_in_column(ndarray, column_idx):
