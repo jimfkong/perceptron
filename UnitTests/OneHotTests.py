@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 
 from OneHot import one_hot
+from Utilities import get_n_columns, get_n_rows
 
 
 class OneHotTests(unittest.TestCase):
@@ -15,5 +16,10 @@ class OneHotTests(unittest.TestCase):
 
         result = one_hot(features, feature_names)
 
-        self.assertCountEqual(result[1], ['feat3_3', 'feat3_2', 'feat3_4'])
+        self.assertEqual(result[1].tolist(), ['feat1', 'feat2', 'feat3_2', 'feat3_3', 'feat3_4'])
+        self.assertEqual(get_n_columns(result[0]), 5)
+        self.assertEqual(get_n_rows(result[0]), 3)
+        self.assertEqual(result[0][0, :].tolist(), [1, 1, 0, 1, 0])
+        self.assertEqual(result[0][1, :].tolist(), [0, 1, 1, 0, 0])
+        self.assertEqual(result[0][2, :].tolist(), [1, 1, 0, 0, 1])
 
